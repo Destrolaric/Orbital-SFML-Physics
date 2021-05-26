@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+.idea/
+
+cmake-build-debug-visual-studio/CMakeFiles/3.16.5/
+
+cmake-build-debug-visual-studio/
