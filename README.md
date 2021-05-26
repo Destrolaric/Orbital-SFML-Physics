@@ -6,3 +6,4 @@ My experiment on C++ graphics and my try on gravitational physics. Currently onl
 - Saved game positions.
 - Maybe some meaning.
 - Meaningful numbers for distance and speed(convert pixels to real speed)
+- <b> AHH... also collision system.
