@@ -10,14 +10,9 @@ int main() {
     Sprite sprite;
     Text text;
     Texture texture;
-    if (!texture.loadFromFile("C:\\Users\\georg\\PhysicsSimulationStuff\\black.png")) {
-        return EXIT_FAILURE;
-    }
+
     std::vector<Planet> planets;
-    for (int i = 0; i < 10; i++) {
-        Planet planet = Planet(i % 2 * 500 + i , i % 2 * 50 + i * 40, 10, 100000000, Vector2f(400, 400));
-        planets.push_back(planet);
-    }
+
     OrbitalCalculator orbitalCalculator(planets);
     sprite.setTexture(texture);
     while (window->isOpen()) {
@@ -27,7 +22,7 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window->close();
             if (event.type == sf::Event::MouseButtonReleased){
-                Planet planet = Planet(event.mouseButton.x, event.mouseButton.y, 10, 999099999, Vector2f(0, 0));
+                Planet planet = Planet(event.mouseButton.x, event.mouseButton.y, 10, 99909900, Vector2f(0, 0));
                 orbitalCalculator.addPlanet(planet);
             }
         }

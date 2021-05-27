@@ -16,23 +16,22 @@ using namespace sf;
 
 class OrbitalCalculator {
 private:
+
+    float tick = 10;
+    std::mutex mutex;
+    std::vector<Planet> planets;
+
     static Vector2<float> normalize(const Vector2<float> &source);
 
-    Vector2<float> calculateForceTowardsPlanet(Planet &planet);
 
-    void calculateVelocity(Planet &planet);
+    void calculateVelocity(Planet &planet, bool &flag);
+
+    bool processCollision(Planet &planet, Planet &second_planet);
 
 public:
     const std::vector<Planet> &getPlanets() const;
-
+    void deletePlanet(const Planet& planet);
     void addPlanet(Planet planet);
-
-private:
-    float tick = 10;
-
-    std::mutex mutex;
-    std::vector<Planet> planets;
-public:
 
     explicit OrbitalCalculator(const std::vector<Planet> &planets);
 
@@ -40,6 +39,9 @@ public:
 
     void updatePlanet(Planet &planet);
 
+    bool isCollided(Planet &planet, Planet &second_planet);
+
+    static Vector2<float> calculateForceTowardsPlanet(Planet &planet, Planet &second_planet);
 };
 
 

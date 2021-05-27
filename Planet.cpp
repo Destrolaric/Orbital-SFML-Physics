@@ -7,12 +7,11 @@
 using namespace sf;
 
 Planet::Planet(float x_pos, float y_pos, float radius, long long mass, Vector2f velocity) : position(x_pos, y_pos) {
+    planet.setPosition(x_pos - radius , y_pos - radius );
     planet.setRadius(radius);
-    planet.setPosition(x_pos, y_pos);
     planet.setFillColor(Color::Red);
     acceleration = Vector2f(0, 0);
     this->velocity = Vector2f(velocity.x / 1000, velocity.y / 1000);
-
     this->mass = mass;
 }
 
@@ -21,8 +20,9 @@ Vector2f Planet::getAcceleration() {
 }
 
 Planet::Planet(float x_pos, float y_pos, float radius, long long mass, Image image, Vector2f velocity) {
+    planet.setPosition(x_pos + radius , y_pos - radius );
     planet.setRadius(radius);
-    planet.setPosition(x_pos, y_pos);
+
     Texture *texture = new Texture();
     texture->loadFromImage(image);
     planet.setTexture(texture);
@@ -60,4 +60,20 @@ const Vector2f &Planet::getVelocity() const {
 
 const CircleShape &Planet::getPlanet() const {
     return planet;
+}
+
+void Planet::setMass(long long int mass) {
+    Planet::mass = mass;
+}
+
+void Planet::setPlanet(const CircleShape &planet) {
+    Planet::planet = planet;
+}
+
+bool Planet::operator==(const Planet &planet1) {
+    return this->getPosition() == planet1.getPosition();
+}
+
+Vector2<float> Planet::getCenteredPosition() {
+    return {planet.getPosition().x + getPlanet().getRadius(), planet.getPosition().y + getPlanet().getRadius()};
 }

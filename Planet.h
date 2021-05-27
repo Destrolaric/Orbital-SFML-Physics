@@ -11,10 +11,15 @@ using namespace sf;
 
 class Planet {
 public:
+    bool operator==(const Planet &planet1);
 
     long long int getMass() const;
 
+    Vector2<float> getCenteredPosition();
+
     void setPosition(const Vector2f &position);
+
+    void setMass(long long int mass);
 
     const Vector2f &getPosition() const;
 
@@ -37,9 +42,12 @@ public:
 private:
     Image image;
     CircleShape planet;
+public:
+    void setPlanet(const CircleShape &planet);
+
+private:
     Vector2f position, velocity, acceleration;
     long long mass;
-
 };
 
 
